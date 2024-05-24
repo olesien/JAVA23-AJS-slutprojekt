@@ -15,10 +15,10 @@ h1 {
     align-items: center;
 }
 
-.overlay-form {
+.overlay-content {
     border-radius: 10px;
     width: 300px;
-    height: 600px;
+    min-height: 300px;
     max-height: 100%;
     background-color: white;
     color: black;
@@ -28,8 +28,44 @@ h1 {
     box-shadow: 9px 10px 32px 0px rgba(84, 84, 84, 0.74);
 }
 
-.overlay-form h3 {
+.overlay-content h3 {
     text-align: center;
+}
+
+.overlay-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.overlay-form span {
+    display: block;
+    padding: 0.6rem;
+}
+.overlay-form input[type="text"],
+.overlay-form select {
+    padding: 0.6rem;
+    border: none;
+    background-color: rgba(150, 150, 150, 1);
+    color: white;
+    border-radius: 5px;
+}
+
+.overlay-form input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    opacity: 1; /* Firefox */
+}
+
+.overlay-form button {
+    background-color: darkmagenta;
+    border: none;
+    color: white;
+    padding: 0.6rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+.overlay-form button:hover {
+    cursor: pointer;
+    background-color: purple;
 }
 
 .close-overlay {
