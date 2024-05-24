@@ -18,6 +18,13 @@ export function useTasks() {
         update(tasksRef, newTasks);
     };
 
+    const editTask = (data) => {
+        const key = data.key;
+        const taskRef = ref(db, `tasks/${key}/`);
+        delete data.key; //We don't need that to come with.
+        update(taskRef, data);
+    };
+
     const removeTask = (key) => {
         const taskToDeleteRef = ref(db, `tasks/${key}/`);
         remove(taskToDeleteRef);
@@ -30,5 +37,5 @@ export function useTasks() {
             setTasks(tasks);
         });
     }, []);
-    return { tasks, addTask, removeTask };
+    return { tasks, addTask, removeTask, editTask };
 }
