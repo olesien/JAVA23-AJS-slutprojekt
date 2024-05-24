@@ -1,0 +1,79 @@
+.container {
+    padding: 1rem;
+    width: 100%;
+}
+
+.board {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.board .column {
+    width: 250px;
+    min-height: 500px;
+    border-radius: 8px;
+    border: 2px solid rgb(206, 206, 206);
+    background-color: rgba(230, 230, 230, 1);
+    flex-direction: column;
+    padding: 0.5rem 0;
+}
+
+.board h2 {
+    text-align: center;
+}
+
+.task {
+    width: 100%;
+    border-radius: 5px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+.task-content {
+    width: 100%;
+    display: flex;
+    padding: 0 1rem;
+}
+
+.task-close {
+    display: flex;
+    align-items: flex-start;
+    padding-right: 6px;
+    padding-bottom: 20px;
+}
+
+.task-close p:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.board ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.board .ux {
+    background-color: rgb(2, 134, 134);
+}
+
+.board .devbackend {
+    background-color: rgb(207, 38, 207);
+}
+
+.board .devfrontend {
+    background-color: rgb(204, 127, 25);
+}
+
+.board .bug {
+    background-color: rgb(136, 40, 40);
+}

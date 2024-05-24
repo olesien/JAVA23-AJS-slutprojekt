@@ -8,11 +8,11 @@ export default function AddToDo({ addTask }) {
         console.log(e);
         e.preventDefault();
         console.log(content, type);
-        addTask({ content, type });
+        addTask({ content, type, column: "todo" });
         setShowForm(false);
     };
     return (
-        <div>
+        <div className="addTask">
             <button onClick={() => setShowForm(true)}>Add Task</button>
             {showForm && (
                 <AddForm close={() => setShowForm(false)} submit={submit} />

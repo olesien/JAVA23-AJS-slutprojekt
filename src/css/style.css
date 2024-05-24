@@ -1,5 +1,30 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding-inline-start: 0;
+}
+
 h1 {
     color: red;
+    text-align: center;
+    padding: 2rem;
+}
+
+.addTask {
+    display: flex;
+    justify-content: center;
+}
+
+.addTask > button {
+    background-color: darkmagenta;
+    border: none;
+    color: white;
+    padding: 1rem;
+    border-radius: 5px;
+}
+.addTask > button:hover {
+    cursor: pointer;
+    background-color: purple;
 }
 
 #overlay {
