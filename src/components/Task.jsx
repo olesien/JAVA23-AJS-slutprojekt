@@ -3,6 +3,12 @@ import { useTasks } from "../hooks/firebase/useTasks";
 import { useDrag } from "react-dnd";
 
 export default function Task({ task, preview }) {
+    const { removeTask } = useTasks();
+    const remove = (key) => {
+        const yes = confirm("Are you sure you would like to remove the task?");
+        if (!yes) return;
+        removeTask(key);
+    };
     const [{ opacity }, dragRef] = useDrag(
         () => ({
             type: "task",
@@ -13,7 +19,6 @@ export default function Task({ task, preview }) {
         }),
         []
     );
-    const { removeTask } = useTasks();
     return (
         <li
             className={`task ${task?.type ?? "Unknown"} ${
@@ -21,9 +26,11 @@ export default function Task({ task, preview }) {
             }`}
             ref={dragRef}
         >
-            <div className="task-content">{task?.content}</div>
+            <div className="task-content">
+                {task?.content} {!!task?.assignee && `(${task.assignee})`}
+            </div>
             <div className="task-close">
-                <p onClick={() => removeTask(task.key)}>X</p>
+                <p onClick={() => remove(task.key)}>X</p>
             </div>
         </li>
     );

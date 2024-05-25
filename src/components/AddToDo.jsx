@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import AddForm from "./AddForm";
+import { toast } from "react-toastify";
 
 export default function AddToDo({ addTask }) {
     const [showForm, setShowForm] = useState(false);
 
     const submit = (e, content, type) => {
-        console.log(e);
         e.preventDefault();
-        console.log(content, type);
+        if (content.length < 4) {
+            toast.error("The content is too short (min 4)");
+            return;
+        }
         addTask({ content, type, column: "todo" });
         setShowForm(false);
     };

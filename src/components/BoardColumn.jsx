@@ -1,10 +1,8 @@
 import React, { useMemo } from "react";
 import Task from "./Task";
 import { useDrop } from "react-dnd";
-import { useTasks } from "../hooks/firebase/useTasks";
-
-export default function BoardColumn({ id, title, tasks }) {
-    const { editTask } = useTasks();
+export default function BoardColumn({ id, title, tasks, moveTask }) {
+    // const { editTask } = useTasks();
     const filteredTasks = useMemo(() => {
         return Object.entries(tasks)
             .map(([key, data]) => ({ key, ...data }))
@@ -16,7 +14,8 @@ export default function BoardColumn({ id, title, tasks }) {
             console.log(item);
             const task = item.task;
             task.column = id;
-            editTask(task);
+            //editTask(task);
+            moveTask(task);
         },
         collect: (monitor) => ({
             isOver: monitor.isOver(),

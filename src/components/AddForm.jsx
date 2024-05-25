@@ -3,13 +3,10 @@ import React, { useState } from "react";
 export default function AddForm({ close, submit }) {
     const [content, setContent] = useState("");
     const [type, setType] = useState("ux");
-    const clickedForm = (e) => {
-        e.stopPropagation();
-    };
 
     return (
-        <div id="overlay" onClick={() => close()}>
-            <div className="overlay-content" onClick={clickedForm}>
+        <div id="overlay">
+            <div className="overlay-content">
                 <div className="close-overlay">
                     <p onClick={() => close()}>X</p>
                 </div>
@@ -28,6 +25,7 @@ export default function AddForm({ close, submit }) {
                             name="content"
                             id="content"
                             placeholder="fix everything"
+                            minLength={3}
                         />
                     </label>
                     <label>
