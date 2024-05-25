@@ -5,9 +5,31 @@
 }
 
 h1 {
-    color: red;
+    color: white;
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background-color: black;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+header button {
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    padding: 0;
+    display: inline;
+}
+
+header button:hover {
+    cursor: pointer;
+    color: lightblue;
 }
 
 .addTask {

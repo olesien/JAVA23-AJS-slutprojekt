@@ -3,7 +3,11 @@ import { ToastContainer } from "react-toastify";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useAuth } from "./hooks/firebase/useAuth";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+    createBrowserRouter,
+    Navigate,
+    RouterProvider,
+} from "react-router-dom";
 import ScrumBoard from "./pages/ScrumBoard";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -18,15 +22,39 @@ export function App() {
     const router = createBrowserRouter([
         {
             path: "/",
-            element: <ScrumBoard />,
+            element: (
+                <>
+                    {!user ? (
+                        <Navigate to={"login"} replace />
+                    ) : (
+                        <ScrumBoard logout={logout} />
+                    )}
+                </>
+            ),
         },
         {
             path: "/login",
-            element: <Login login={login} />,
+            element: (
+                <>
+                    {!!user ? (
+                        <Navigate to={"/"} replace />
+                    ) : (
+                        <Login login={login} />
+                    )}
+                </>
+            ),
         },
         {
             path: "/register",
-            element: <Register register={register} />,
+            element: (
+                <>
+                    {!!user ? (
+                        <Navigate to={"/"} replace />
+                    ) : (
+                        <Register register={register} />
+                    )}
+                </>
+            ),
         },
     ]);
     if (!user) {

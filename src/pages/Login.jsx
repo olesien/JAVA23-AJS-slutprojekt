@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Login({ login }) {
@@ -23,7 +24,7 @@ export default function Login({ login }) {
                 <h2>Login</h2>
                 <form method="post" onSubmit={(e) => submit(e)}>
                     <label>
-                        Email:{" "}
+                        <span className="label">Email:</span>
                         <input
                             type="email"
                             name="Email"
@@ -34,7 +35,7 @@ export default function Login({ login }) {
                         />
                     </label>
                     <label>
-                        Password:{" "}
+                        <span className="label">Password:</span>
                         <input
                             type="password"
                             name="Password"
@@ -42,10 +43,15 @@ export default function Login({ login }) {
                             minLength={3}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            autoComplete="password"
                         />
                     </label>
                     <input type="submit" value="Login" />
                 </form>
+                <p>
+                    Don't have an account?{" "}
+                    <Link to="/register">Sign Up here</Link>
+                </p>
             </div>
         </div>
     );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Register({ register }) {
@@ -32,7 +33,7 @@ export default function Register({ register }) {
                 <h2>Register</h2>
                 <form method="post" onSubmit={(e) => submit(e)}>
                     <label>
-                        Email:{" "}
+                        <span className="label">Email:</span>
                         <input
                             type="email"
                             name="Email"
@@ -43,22 +44,24 @@ export default function Register({ register }) {
                         />
                     </label>
                     <label>
-                        Password:{" "}
+                        <span className="label">Password:</span>
                         <input
                             type="password"
                             name="Password"
                             id="Password"
+                            autoComplete="password"
                             minLength={3}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
                     <label>
-                        Reenter Password:{" "}
+                        <span className="label">Reenter Password:</span>
                         <input
                             type="password"
                             name="RenterPassword"
                             id="RenterPassword"
+                            autoComplete="password"
                             minLength={3}
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -66,6 +69,10 @@ export default function Register({ register }) {
                     </label>
                     <input type="submit" value="Register" />
                 </form>
+                <p>
+                    Already have an account?{" "}
+                    <Link to={"/login"}>Login here</Link>
+                </p>
             </div>
         </div>
     );
