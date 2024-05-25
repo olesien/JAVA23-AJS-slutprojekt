@@ -5,9 +5,11 @@ import {
     onAuthStateChanged,
     signOut,
 } from "firebase/auth";
+import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { app } from "../../lib/firebase";
 
-const auth = getAuth();
+const auth = getAuth(app);
 
 export function useAuth() {
     const [user, setUser] = useState(null);

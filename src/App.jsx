@@ -1,24 +1,37 @@
 import { ToastContainer } from "react-toastify";
-import AddToDo from "./components/AddToDo";
-import Board from "./components/Board";
-import { useTasks } from "./hooks/firebase/useTasks";
 
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "./hooks/firebase/useAuth";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ScrumBoard from "./pages/ScrumBoard";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 export function App() {
-    const { tasks, addTask } = useTasks();
     const { user, login, register, logout } = useAuth();
 
-    console.log(tasks);
+    const router = createBrowserRouter([
+        {
+            path: "/",
+            element: <ScrumBoard />,
+        },
+        {
+            path: "/login",
+            element: <Login login={login} />,
+        },
+        {
+            path: "/register",
+            element: <Register register={register} />,
+        },
+    ]);
+    if (!user) {
+    }
     return (
         <>
             <DndProvider backend={HTML5Backend}>
-                <h1>Scrum Board</h1>
-                <AddToDo addTask={addTask} />
-                <Board tasks={tasks} />
+                <RouterProvider router={router} />
             </DndProvider>
             <ToastContainer />
         </>
