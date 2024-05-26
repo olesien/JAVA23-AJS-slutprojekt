@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 export default function Register({ register }) {
     const [email, setEmail] = useState("");
+    const [displayName, setDisplayName] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -12,6 +13,11 @@ export default function Register({ register }) {
 
         if (email.length < 3) {
             toast.error("Email needs to be at least 3 characters");
+            return;
+        }
+
+        if (displayName.length < 3) {
+            toast.error("Display Name needs to be at least 3 characters");
             return;
         }
 
@@ -25,7 +31,7 @@ export default function Register({ register }) {
             return;
         }
 
-        register(email, password);
+        register(email, password, displayName);
     };
     return (
         <div className="auth-overlay">
@@ -41,6 +47,17 @@ export default function Register({ register }) {
                             minLength={3}
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        <span className="label">Display Name:</span>
+                        <input
+                            type="text"
+                            name="Display Name"
+                            id="displayName"
+                            minLength={3}
+                            value={displayName}
+                            onChange={(e) => setDisplayName(e.target.value)}
                         />
                     </label>
                     <label>

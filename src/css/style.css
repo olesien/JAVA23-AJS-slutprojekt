@@ -75,6 +75,11 @@ header button:hover {
     box-shadow: 9px 10px 32px 0px rgba(84, 84, 84, 0.74);
 }
 
+.login-text {
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
 .overlay-content h3 {
     text-align: center;
 }

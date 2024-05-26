@@ -8,10 +8,14 @@ import {
     push,
     remove,
 } from "firebase/database";
+import { useAuth } from "./useAuth";
 const db = getDatabase(app);
-const tasksRef = ref(db, "tasks");
 export function useTasks() {
+    const { user } = useAuth();
     const [tasks, setTasks] = useState({});
+    const uid = user?.uid ?? "Anonymous";
+
+    const tasksRef = ref(db, "/tasks/" + uid);
 
     const addTask = (data) => {
         const newTasks = { ...tasks, [push(tasksRef)?.key ?? "err"]: data };
@@ -20,22 +24,22 @@ export function useTasks() {
 
     const editTask = (data) => {
         const key = data.key;
-        const taskRef = ref(db, `tasks/${key}/`);
+        const taskRef = ref(db, `tasks/${uid}/${key}/`);
         delete data.key; //We don't need that to come with.
         update(taskRef, data);
     };
 
     const removeTask = (key) => {
-        const taskToDeleteRef = ref(db, `tasks/${key}/`);
+        const taskToDeleteRef = ref(db, `tasks/${uid}/${key}/`);
         remove(taskToDeleteRef);
     };
 
     useEffect(() => {
-        onValue(tasksRef, (snapshot) => {
+        const cleanup = onValue(tasksRef, (snapshot) => {
             const tasks = snapshot.val();
-            console.log(tasks);
-            setTasks(tasks);
+            setTasks(tasks ?? {});
         });
-    }, []);
+        return () => cleanup();
+    }, [user]);
     return { tasks, addTask, removeTask, editTask };
 }

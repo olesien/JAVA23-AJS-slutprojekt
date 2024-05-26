@@ -2,9 +2,11 @@ import React from "react";
 import { useTasks } from "../hooks/firebase/useTasks";
 import AddToDo from "../components/AddToDo";
 import Board from "../components/Board";
+import { useAuth } from "../hooks/firebase/useAuth";
 
 export default function ScrumBoard({ logout }) {
     const { tasks, addTask } = useTasks();
+    const { user } = useAuth();
     return (
         <>
             <header>
@@ -12,6 +14,9 @@ export default function ScrumBoard({ logout }) {
                 <button onClick={() => logout()}>Logout</button>
             </header>
             <div>
+                {user && (
+                    <p className="login-text">Logged as: {user?.displayName}</p>
+                )}
                 <AddToDo addTask={addTask} />
                 <Board tasks={tasks} />
             </div>

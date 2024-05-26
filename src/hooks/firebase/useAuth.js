@@ -4,6 +4,7 @@ import {
     signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut,
+    updateProfile,
 } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -41,11 +42,14 @@ export function useAuth() {
             });
     };
 
-    const register = (email, password) => {
+    const register = (email, password, displayName) => {
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed up
-                const user = userCredential.user;
+            .then(async (userCredential) => {
+                // Updating user name
+                await updateProfile(auth.currentUser, { displayName });
+                //Set user directly because otherwise name doesn't come first time
+                setUser({ ...userCredential.user, displayName });
+                //const user = userCredential.user;
                 // ...
                 toast.success("Succesfully registered!");
             })
@@ -58,7 +62,7 @@ export function useAuth() {
     };
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        const cleanup = onAuthStateChanged(auth, (user) => {
             if (user) {
                 // User is signed in, see docs for a list of available properties
                 // https://firebase.google.com/docs/reference/js/auth.user
@@ -70,6 +74,7 @@ export function useAuth() {
                 // ...
             }
         });
+        return () => cleanup();
     }, []);
     return { user, login, register, logout };
 }

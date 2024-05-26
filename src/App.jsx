@@ -17,7 +17,6 @@ import "./css/auth.css";
 
 export function App() {
     const { user, login, register, logout } = useAuth();
-    console.log("user", user);
 
     const router = createBrowserRouter([
         {
