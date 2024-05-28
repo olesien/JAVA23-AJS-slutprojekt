@@ -1,15 +1,15 @@
-#Scrum Board
+# Scrum Board
 
-###Powered by React, Firebase, React Router, React D&D, React Toastify and more!
+### Powered by React, Firebase, React Router, React D&D, React Toastify and more!
 
-##Features
+## Features
 - Allows users to login or sign up using Firebase Authentication
 - A scrum board where a user can add tasks, delete them and drag them to another column such as Done.
 - If an assignee has not been set, this needs to be done as a step when dragging a task to another column
 - Error management
 - Compatability with GitHub Pages
 
-##Technical
+## Technical
 - useAuth is used to keep track of all auth changes, with React Router rerouting basic on the state of the user
 - useTasks is used as the interface for Firebase RTD, where the user state is used to determine to route to the tasks to give unique boards for all
 - react-toastify is used for success and error messages
