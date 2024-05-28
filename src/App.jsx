@@ -3,11 +3,7 @@ import { ToastContainer } from "react-toastify";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useAuth } from "./hooks/firebase/useAuth";
-import {
-    createBrowserRouter,
-    Navigate,
-    RouterProvider,
-} from "react-router-dom";
+import { Navigate, RouterProvider, createHashRouter } from "react-router-dom";
 import ScrumBoard from "./pages/ScrumBoard";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -18,20 +14,8 @@ import "./css/auth.css";
 export function App() {
     const { user, login, register, logout } = useAuth();
 
-    const router = createBrowserRouter(
+    const router = createHashRouter(
         [
-            {
-                path: "/",
-                element: (
-                    <>
-                        {!user ? (
-                            <Navigate to={"login"} replace />
-                        ) : (
-                            <ScrumBoard logout={logout} />
-                        )}
-                    </>
-                ),
-            },
             {
                 path: "/login",
                 element: (
@@ -52,6 +36,18 @@ export function App() {
                             <Navigate to={"/"} replace />
                         ) : (
                             <Register register={register} />
+                        )}
+                    </>
+                ),
+            },
+            {
+                path: "/*",
+                element: (
+                    <>
+                        {!user ? (
+                            <Navigate to={"login"} replace />
+                        ) : (
+                            <ScrumBoard logout={logout} />
                         )}
                     </>
                 ),
