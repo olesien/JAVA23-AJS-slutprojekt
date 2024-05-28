@@ -8,6 +8,7 @@ export default function Board({ tasks, remove }) {
     const { editTask } = useTasks();
     const [assignTaskForm, setAssignTaskForm] = useState(null);
 
+    //Edit the task
     const submit = (e, task, assignee) => {
         e.preventDefault();
         if (assignee.length < 3) {
@@ -18,6 +19,7 @@ export default function Board({ tasks, remove }) {
         setAssignTaskForm(null);
     };
 
+    //Move the task to another column. If it doesn't already have an asignee set, then prompt for that first.
     const moveTask = (task) => {
         if (task?.assignee) {
             //Check if we have already assigned a person to this one.

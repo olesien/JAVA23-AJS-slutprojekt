@@ -9,6 +9,8 @@ export default function Task({ task, preview }) {
         if (!yes) return;
         removeTask(key);
     };
+
+    //Ref component used to know what components are draggable, and keep track of their states
     const [{ opacity }, dragRef] = useDrag(
         () => ({
             type: "task",

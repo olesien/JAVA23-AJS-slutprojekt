@@ -33,7 +33,7 @@ export function useAuth() {
                 // Signed in
                 const user = userCredential.user;
                 // ...
-                toast.success("Succesfully logged in!");
+                toast.success("Successfully logged in!");
             })
             .catch((error) => {
                 const errorCode = error.code;

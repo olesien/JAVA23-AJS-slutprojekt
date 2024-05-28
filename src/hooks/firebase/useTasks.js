@@ -9,6 +9,7 @@ import {
     remove,
 } from "firebase/database";
 import { useAuth } from "./useAuth";
+import { toast } from "react-toastify";
 const db = getDatabase(app);
 
 //useTasks is a custom hook that allows you to interact with the firebase database easily.
@@ -19,23 +20,39 @@ export function useTasks() {
     const [tasks, setTasks] = useState({});
     const uid = user?.uid ?? "Anonymous";
 
+    //The REF to the tasks, along with the unique ID that comes with a user.
     const tasksRef = ref(db, "/tasks/" + uid);
 
     const addTask = (data) => {
-        const newTasks = { ...tasks, [push(tasksRef)?.key ?? "err"]: data };
-        update(tasksRef, newTasks);
+        try {
+            const newTasks = { ...tasks, [push(tasksRef)?.key ?? "err"]: data };
+            update(tasksRef, newTasks);
+        } catch (err) {
+            toast.error("Something went wrong adding the task");
+            console.log(err);
+        }
     };
 
     const editTask = (data) => {
-        const key = data.key;
-        const taskRef = ref(db, `tasks/${uid}/${key}/`);
-        delete data.key; //We don't need that to come with.
-        update(taskRef, data);
+        try {
+            const key = data.key;
+            const taskRef = ref(db, `tasks/${uid}/${key}/`);
+            delete data.key; //We don't need that to come with.
+            update(taskRef, data);
+        } catch (err) {
+            toast.error("Something went wrong editing the task.");
+            console.log(err);
+        }
     };
 
     const removeTask = (key) => {
-        const taskToDeleteRef = ref(db, `tasks/${uid}/${key}/`);
-        remove(taskToDeleteRef);
+        try {
+            const taskToDeleteRef = ref(db, `tasks/${uid}/${key}/`);
+            remove(taskToDeleteRef);
+        } catch (err) {
+            toast.error("Something went wrong removing the task.");
+            console.log(err);
+        }
     };
 
     useEffect(() => {

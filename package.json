@@ -3,8 +3,6 @@
     "version": "1.0.0",
     "description": "Scrum Board",
     "scripts": {
-        "predeploy": "parcel build ./src/index.html --dist-dir docs --public-url .",
-        "deploy": "gh-pages -d docs",
         "dev": "parcel ./src/index.html",
         "devfresh": "rm -rf .parcel-cache && parcel ./src/index.html",
         "build": "parcel build ./src/index.html --dist-dir docs --public-url .",
@@ -17,7 +15,6 @@
         "buffer": "^6.0.3",
         "crypto-browserify": "^3.12.0",
         "events": "^3.3.0",
-        "gh-pages": "^6.1.1",
         "os-browserify": "^0.3.0",
         "parcel": "^2.12.0",
         "path-browserify": "^1.0.1",

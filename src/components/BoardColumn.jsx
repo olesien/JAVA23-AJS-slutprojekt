@@ -8,10 +8,11 @@ export default function BoardColumn({ id, title, tasks, moveTask }) {
             .map(([key, data]) => ({ key, ...data }))
             .filter((data) => (data?.column ?? "todo") === id);
     }, [tasks]);
+
+    //Put on each of the columns, which indicates to react DND that this is a component that an item can be dropped to
     const [{ isOver, hoverItem }, dropRef] = useDrop({
         accept: "task",
         drop: (item) => {
-            console.log(item);
             const task = item.task;
             task.column = id;
             //editTask(task);
