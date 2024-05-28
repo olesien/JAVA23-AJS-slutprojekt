@@ -31,6 +31,7 @@ export default function Register({ register }) {
             return;
         }
 
+        //Pass forward to register function
         register(email, password, displayName);
     };
     return (

@@ -16,6 +16,8 @@ export default function Login({ login }) {
             toast.error("Password needs to be at least 3 characters");
             return;
         }
+
+        //Pass forward to login function
         login(email, password);
     };
     return (

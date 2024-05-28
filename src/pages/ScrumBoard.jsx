@@ -18,6 +18,7 @@ export default function ScrumBoard({ logout }) {
                     <p className="login-text">Logged as: {user?.displayName}</p>
                 )}
                 <AddToDo addTask={addTask} />
+                {/* The main board where you see the tasks */}
                 <Board tasks={tasks} />
             </div>
         </>

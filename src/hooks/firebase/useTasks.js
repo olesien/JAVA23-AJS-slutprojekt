@@ -10,6 +10,10 @@ import {
 } from "firebase/database";
 import { useAuth } from "./useAuth";
 const db = getDatabase(app);
+
+//useTasks is a custom hook that allows you to interact with the firebase database easily.
+//Note: Using in multiple different places might lead to many listeners being setup, which is not optimized.
+//Because this is just a test project this is currently the case but later on it should either be in just one place or a Context should be setup to store global data
 export function useTasks() {
     const { user } = useAuth();
     const [tasks, setTasks] = useState({});

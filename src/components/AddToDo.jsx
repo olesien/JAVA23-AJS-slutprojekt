@@ -11,6 +11,11 @@ export default function AddToDo({ addTask }) {
             toast.error("The content is too short (min 4)");
             return;
         }
+
+        if (content.length > 150) {
+            toast.error("The content is too long (max 150)");
+            return;
+        }
         addTask({ content, type, column: "todo" });
         setShowForm(false);
     };
