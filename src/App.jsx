@@ -18,44 +18,47 @@ import "./css/auth.css";
 export function App() {
     const { user, login, register, logout } = useAuth();
 
-    const router = createBrowserRouter([
-        {
-            path: "/",
-            element: (
-                <>
-                    {!user ? (
-                        <Navigate to={"login"} replace />
-                    ) : (
-                        <ScrumBoard logout={logout} />
-                    )}
-                </>
-            ),
-        },
-        {
-            path: "/login",
-            element: (
-                <>
-                    {!!user ? (
-                        <Navigate to={"/"} replace />
-                    ) : (
-                        <Login login={login} />
-                    )}
-                </>
-            ),
-        },
-        {
-            path: "/register",
-            element: (
-                <>
-                    {!!user ? (
-                        <Navigate to={"/"} replace />
-                    ) : (
-                        <Register register={register} />
-                    )}
-                </>
-            ),
-        },
-    ]);
+    const router = createBrowserRouter(
+        [
+            {
+                path: "/",
+                element: (
+                    <>
+                        {!user ? (
+                            <Navigate to={"login"} replace />
+                        ) : (
+                            <ScrumBoard logout={logout} />
+                        )}
+                    </>
+                ),
+            },
+            {
+                path: "/login",
+                element: (
+                    <>
+                        {!!user ? (
+                            <Navigate to={"/"} replace />
+                        ) : (
+                            <Login login={login} />
+                        )}
+                    </>
+                ),
+            },
+            {
+                path: "/register",
+                element: (
+                    <>
+                        {!!user ? (
+                            <Navigate to={"/"} replace />
+                        ) : (
+                            <Register register={register} />
+                        )}
+                    </>
+                ),
+            },
+        ],
+        { basename: "/" }
+    );
     if (!user) {
     }
     return (
