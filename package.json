@@ -2,7 +2,6 @@
     "name": "java23-ajs-slutprojekt-linus-lindberg",
     "version": "1.0.0",
     "description": "Scrum Board",
-    "main": "index.js",
     "scripts": {
         "dev": "parcel ./src/index.html",
         "devfresh": "rm -rf .parcel-cache && parcel ./src/index.html",
