@@ -8,6 +8,7 @@
         "build": "parcel build ./src/index.html --dist-dir docs --public-url .",
         "clean": "del-cli ./.parcel-cache ./docs ./dist"
     },
+    "homepage": "https://olesien.github.io/JAVA23-AJS-slutprojekt-linus-lindberg",
     "author": "",
     "license": "ISC",
     "devDependencies": {
