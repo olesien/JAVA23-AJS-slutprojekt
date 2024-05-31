@@ -21,6 +21,7 @@ export default function Task({ task, preview }) {
         }),
         []
     );
+    console.log(task?.type);
     return (
         <li
             className={`task ${task?.type ?? "Unknown"} ${
@@ -31,9 +32,11 @@ export default function Task({ task, preview }) {
             <div className="task-content">
                 {task?.content} {!!task?.assignee && `(${task.assignee})`}
             </div>
-            <div className="task-close">
-                <p onClick={() => remove(task.key)}>X</p>
-            </div>
+            {task?.column === "done" && (
+                <div className="task-close">
+                    <p onClick={() => remove(task.key)}>X</p>
+                </div>
+            )}
         </li>
     );
 }

@@ -14,6 +14,8 @@ export default function BoardColumn({ id, title, tasks, moveTask }) {
         accept: "task",
         drop: (item) => {
             const task = item.task;
+
+            if ((task?.column ?? "todo") === id) return; //We can't drag it to itself.
             task.column = id;
             //editTask(task);
             moveTask(task);
