@@ -19,7 +19,7 @@ export default function Task({ task, preview }) {
                 opacity: monitor.isDragging() ? 0.5 : 1,
             }),
         }),
-        []
+        [task]
     );
     console.log(task?.type);
     return (

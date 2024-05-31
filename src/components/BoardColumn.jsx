@@ -10,21 +10,24 @@ export default function BoardColumn({ id, title, tasks, moveTask }) {
     }, [tasks]);
 
     //Put on each of the columns, which indicates to react DND that this is a component that an item can be dropped to
-    const [{ isOver, hoverItem }, dropRef] = useDrop({
-        accept: "task",
-        drop: (item) => {
-            const task = item.task;
+    const [{ isOver, hoverItem }, dropRef] = useDrop(
+        {
+            accept: "task",
+            drop: (item) => {
+                const task = item.task;
 
-            if ((task?.column ?? "todo") === id) return; //We can't drag it to itself.
-            task.column = id;
-            //editTask(task);
-            moveTask(task);
+                if ((task?.column ?? "todo") === id) return; //We can't drag it to itself.
+                task.column = id;
+                //editTask(task);
+                moveTask(task);
+            },
+            collect: (monitor) => ({
+                isOver: monitor.isOver(),
+                hoverItem: monitor.getItem(),
+            }),
         },
-        collect: (monitor) => ({
-            isOver: monitor.isOver(),
-            hoverItem: monitor.getItem(),
-        }),
-    });
+        [id]
+    );
     return (
         <div className="column" id={id} ref={dropRef}>
             <h2>{title}</h2>
