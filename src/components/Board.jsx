@@ -21,8 +21,11 @@ export default function Board({ tasks, remove }) {
 
     //Move the task to another column. If it doesn't already have an asignee set, then prompt for that first.
     const moveTask = (task) => {
+        console.log("Move task");
         if (task?.assignee) {
             //Check if we have already assigned a person to this one.
+            console.log("Pre-assigned");
+            console.log(task);
             editTask(task);
         } else {
             setAssignTaskForm(task);

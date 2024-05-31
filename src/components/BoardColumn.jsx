@@ -14,29 +14,37 @@ export default function BoardColumn({ id, title, tasks, moveTask }) {
         {
             accept: "task",
             drop: (item) => {
-                const task = item.task;
+                const editedTask = { ...item.task };
+                console.log(item);
 
-                if ((task?.column ?? "todo") === id) return; //We can't drag it to itself.
-                task.column = id;
-                //editTask(task);
-                moveTask(task);
+                console.log("MOVING: ", editedTask);
+                console.log(item.from, id);
+                console.log((item.from ?? "todo") === id);
+                if ((item.from ?? "todo") === id) return; //We can't drag it to itself.task.column = id;
+                editedTask.column = id;
+                moveTask(editedTask);
             },
             collect: (monitor) => ({
                 isOver: monitor.isOver(),
                 hoverItem: monitor.getItem(),
             }),
         },
-        [id]
+        [id, moveTask]
     );
     return (
         <div className="column" id={id} ref={dropRef}>
             <h2>{title}</h2>
             <ul className="list">
                 {filteredTasks.map((task) => (
-                    <Task task={task} key={task.key} />
+                    <Task task={task} key={task.key} from={id} />
                 ))}
                 {isOver && !!hoverItem && (
-                    <Task task={hoverItem.task} key={"hover"} preview={true} />
+                    <Task
+                        task={hoverItem.task}
+                        key={"hover"}
+                        preview={true}
+                        from={id}
+                    />
                 )}
             </ul>
         </div>
