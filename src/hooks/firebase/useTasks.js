@@ -49,6 +49,7 @@ export function useTasks() {
         try {
             const taskToDeleteRef = ref(db, `tasks/${uid}/${key}/`);
             remove(taskToDeleteRef);
+            toast.success("Task removed!");
         } catch (err) {
             toast.error("Something went wrong removing the task.");
             console.log(err);

@@ -34,6 +34,7 @@
 .auth-panel .label {
     padding: 0.5rem;
     display: inline-block;
+    width: 95%;
 }
 
 .auth-panel input {
