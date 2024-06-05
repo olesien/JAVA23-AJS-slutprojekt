@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 export default function AddForm({ close, submit }) {
-    const [content, setContent] = useState("");
-    const [type, setType] = useState("ux");
+    const [form, setForm] = useState({ content: "", type: "ux" });
 
     return (
         <div id="overlay">
@@ -13,14 +12,19 @@ export default function AddForm({ close, submit }) {
                 <h3>Add Task</h3>
                 <form
                     method="post"
-                    onSubmit={(e) => submit(e, content, type)}
+                    onSubmit={(e) => submit(e, form.content, form.type)}
                     className="overlay-form"
                 >
                     <label>
                         <span>Content</span>
                         <input
-                            value={content}
-                            onChange={(v) => setContent(v.target.value)}
+                            value={form.content}
+                            onChange={(v) =>
+                                setForm((old) => ({
+                                    ...old,
+                                    content: v.target.value,
+                                }))
+                            }
                             type="text"
                             name="content"
                             id="content"
@@ -33,8 +37,13 @@ export default function AddForm({ close, submit }) {
                         <select
                             name="type"
                             id="type"
-                            value={type}
-                            onChange={(v) => setType(v.target.value)}
+                            value={form.type}
+                            onChange={(v) =>
+                                setForm((old) => ({
+                                    ...old,
+                                    type: v.target.value,
+                                }))
+                            }
                         >
                             <option value="ux">UX</option>
                             <option value="devbackend">Dev Backend</option>
